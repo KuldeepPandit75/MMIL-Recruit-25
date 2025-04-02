@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import bg from "../assets/bg.jpg";
-import vector from "../assets/Vector (1).png";
-import unstop from "../assets/unstop-logo 1.png";
-import mmil from "../assets/mmil.png";
+import bg from "/assets/bg.jpg";
+import vector from "/assets/Vector (1).png";
+import unstop from "/assets/unstop-logo 1.png";
+import mmil from "/assets/mmil.png";
 import { Link } from "react-router-dom";
-import appbg from "../assets/bg-app.svg";
+import appbg from "/assets/bg-app.svg";
 import "./Register.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const App = () => {
+
+const Register = () => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -56,8 +58,8 @@ const App = () => {
             alt="Your Image"
             id="imagess"
             style={{
-              width: windowSize.Width < 900 ? "100vw" : "100vw",
-              height: windowSize.Width < 900 ? "125vh" : "129vh",
+              width: windowSize.width < 900 ? "100vw" : "100vw",
+              height: windowSize.width < 900 ? "125vh" : "129vh",
               objectFit: "cover",
             }}
           />
@@ -139,7 +141,7 @@ const App = () => {
                 className={`fa-solid fa-chevron-${
                   expandedCard === "aptitude" ? "down" : "right"
                 }`}
-                style={{ position: "absolute", right: "34px" }}
+                style={{ position: "absolute", right: "60px" }}
               ></i>
             </div>
             {/* <Link to="/Technical" className="card-link"> */}
@@ -195,7 +197,7 @@ const App = () => {
                   className={`fa-solid fa-chevron-${
                     expandedCard === "technical" ? "down" : "right"
                   }`}
-                  style={{ position: "absolute", right: "34px" }}
+                  style={{ position: "absolute", right: "60px" }}
                 ></i>
               </div>
             {/* </Link> */}
@@ -247,12 +249,17 @@ const App = () => {
                 className={`fa-solid fa-chevron-${
                   expandedCard === "interview" ? "down" : "right"
                 }`}
-                style={{ position: "absolute", right: "34px" }}
+                style={{ position: "absolute", right: "60px" }}
               ></i>
             </div>
           </div>
           <img src={mmil} alt="Overlay Image" className="mmil-logo" />
-          <Link to="" onClick={closeRegToast} className="link" style={{ top: positionTop }}>
+
+          {/* <Link to="" onClick={closeRegToast} className="link" style={{ top: positionTop }}>
+            Register Now
+          </Link> */}
+          
+          <Link to="/First" className="link" style={{ top: positionTop }}>
             Register Now
           </Link>
         </div>
@@ -261,4 +268,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Register;

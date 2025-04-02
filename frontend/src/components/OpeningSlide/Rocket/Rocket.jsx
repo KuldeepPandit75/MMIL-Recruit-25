@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import bg from "../../assets/bg.jpg";
-import mmil from "../../assets/1000058712_f1beee89cb94ffdbc7b3a05cbdf6e5cc-30_9_2023, 1_42_36 pm 2.png";
-import rocketImg from "../../images/Vector-rocket.png";
-import smokeImg from "../../images/Frame 6.png";
+import bg from "/assets/bg.jpg";
+import mmil from "/assets/1000058712_f1beee89cb94ffdbc7b3a05cbdf6e5cc-30_9_2023, 1_42_36 pm 2.png";
+import rocketImg from "/images/Vector-rocket.png";
+import smokeImg from "/images/Frame 6.png";
 import { Link, useNavigate } from "react-router-dom";
-import "../Rocket/Rocket.css";
-import appbg from "../../assets/bg-app.svg";
+import "./Rocket.css";
+import appbg from "/assets/bg-app.svg";
 
 const Rocket = () => {
   const [windowSize, setWindowSize] = useState({
@@ -43,10 +43,9 @@ const Rocket = () => {
       }, 2000); 
     }
   }, [isClicked, navigate]);
-  //  } });
 
   return (
-    <div style={{ position: "relative", overflow: "hidden" }}>
+    <div style={{ position: "relative", overflow: "hidden", height:'100vh' }}>
       <img
          src={windowSize.width <= 900 ? appbg : bg}
         alt="Your Image"
@@ -70,7 +69,10 @@ const Rocket = () => {
           borderRadius: "10px",
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
           width: "20rem",
-          height: "16rem"
+          height: "16rem",
+          display: 'flex',
+          flexDirection:'column',
+          alignItems:'center'
         }}
       >
         {isClicked && (

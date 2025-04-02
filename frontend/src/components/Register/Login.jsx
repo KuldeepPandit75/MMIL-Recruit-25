@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import mmil from "../assets/mmil.png";
-import bg from "../assets/bg.jpg";
-import appbg from "../assets/bg-app.svg";
+import mmil from "/assets/mmil.png";
+import bg from "/assets/bg.jpg";
+import appbg from "/assets/bg-app.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
@@ -43,13 +43,13 @@ const Login = () => {
   };
   
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", overflow:'hidden', display:'flex' }}>
       <img
         src={windowSize.width <= 900 ? appbg : bg}
         alt="Your Image"
         style={{
-          width: windowSize.Width < 900 ? "100vw" : "100vw",
-          height: windowSize.Width < 900 ? "100vh" : "100vh",
+          width: windowSize.width < 900 ? "100vw" : "100vw",
+          height: windowSize.width < 900 ? "100vh" : "100vh",
           objectFit: "cover",
         }}
       />
@@ -67,7 +67,11 @@ const Login = () => {
           borderRadius: "10px",
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
           width: "23rem",
-          height: "21rem",
+          height: "19rem",
+          // display:'flex',
+          // flexDirection:'column',
+          // alignItems:'center',
+          textAlign:'center'
         }}
       >
         {/* Your card content goes here */}
@@ -79,6 +83,7 @@ const Login = () => {
             letterSpacing: "2px",
             height: "80px",
             marginTop: "16px",
+            marginBottom:'20px',
             color: "white",
           }}
         >
@@ -113,13 +118,16 @@ const Login = () => {
             <input
               className="form"
               style={{
-                width: "100%",
+                width: "90%",
                 border: "none",
                 background: "none",
                 borderBottom: "1px solid #FFE454",
                 padding: "6px",
                 color: "white",
                 outline: "none",
+                fontSize:"16px",
+                height:'1.5rem',
+                textAlign:'center'
               }}
               type="tel"
               name="phoneNo"
@@ -157,13 +165,16 @@ const Login = () => {
             <input
               className="form"
               style={{
-                width: "100%",
+                width: "90%",
                 border: "none",
                 background: "none",
                 borderBottom: "1px solid #FFE454",
                 padding: "6px",
                 color: "white",
                 outline: "none",
+                fontSize:'16px',
+                height:'1.5rem',
+                textAlign:'center'
               }}
               type="email"
               name="email"
