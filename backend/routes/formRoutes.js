@@ -14,10 +14,11 @@ const Programming = require("../models/Programming");
 const Design = require("../models/Design");
 const Android = require("../models/Android");
 const User = require("../models/User");
+const Resume = require("../models/Resume");
 
 require("../db/connect");
 
-const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = process.env.JWT_SECRET;
 
 const validateRequiredFields = (obj, fields) => {
   for (const field of fields) {
@@ -35,6 +36,7 @@ router.get("/", (req, res) => {
 router.post("/name", async (req, res) => {
   try {
     const { formType } = req.body;
+    let token;
 
     if (!formType) {
       return res.status(422).json({ error: "Form type is required" });
@@ -65,17 +67,17 @@ router.post("/name", async (req, res) => {
         }
 
         const user = new MMIL({
-          name,
-          email,
           year,
+          name,
           rollNo,
-          domain,
-          phoneNo,
           branch,
+          email,
+          phoneNo,
+          domain,
         });
         await user.save();
 
-        const token = jwt.sign({ userId: user._id }, SECRET_KEY, {
+        token = jwt.sign({ userId: user._id }, SECRET_KEY, {
           expiresIn: "48h",
         });
         break;
@@ -141,7 +143,10 @@ router.post("/name", async (req, res) => {
         return res.status(422).json({ error: "Invalid form type" });
     }
 
-    res.status(201).json({ message: "Form submitted successfully" });
+    const response = { message: "Form submitted successfully" };
+    if (token) response.token = token;
+
+    res.status(201).json(response);
   } catch (error) {
     console.error("Form submission error:", error);
     res.status(500).json({ error: "Failed to submit form" });
@@ -278,22 +283,56 @@ router.get("/user/:userId", authMiddleware, async (req, res) => {
   }
 });
 
-router.post("/upload", authMiddleware, upload.single("file"), (req, res) => {
+router.post(
+  "/upload-resume",
+  authMiddleware,
+  upload.single("resume"),
+  async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+
+      const resume = new Resume({
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+        file: req.file.buffer,
+        uploadedBy: req.user._id,
+      });
+
+      await resume.save();
+
+      res.status(201).json({
+        message: "Resume uploaded and stored in database successfully",
+        resumeId: resume._id,
+      });
+    } catch (err) {
+      console.error("Resume upload error:", err);
+      res.status(500).json({ message: "Error uploading resume" });
+    }
+  }
+);
+
+
+router.get("/resume/:id", async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
+    const resume = await Resume.findById(req.params.id);
+
+    if (!resume) {
+      return res.status(404).json({ message: "Resume not found" });
     }
 
-    res.status(200).json({
-      message: "File uploaded successfully",
-      filePath: `/uploads/${req.file.filename}`,
+    res.set({
+      "Content-Type": resume.contentType,
+      "Content-Disposition": `inline; filename="${resume.filename}"`,
     });
-  } catch (error) {
-    console.error("File upload error:", error);
-    res.status(500).json({ error: "Failed to upload file" });
+
+    res.send(resume.file);
+  } catch (err) {
+    console.error("Error fetching resume:", err);
+    res.status(500).json({ message: "Error retrieving resume" });
   }
 });
 
-router.use("/uploads", express.static("uploads"));
 
 module.exports = router;
