@@ -169,9 +169,17 @@ function Register() {
         );
         const data = response.data;
 
-        const fileUploadResponse=await fileUpload(data);
 
-        if (response.status !== 201 || !fileUploadResponse) {
+        if(details.year=="2nd year"){
+
+          const fileUploadResponse=await fileUpload(data);
+          if(!fileUploadResponse){
+            toast.error(data.error || "File Upload Failed!");
+          return;
+          }
+        }
+
+        if (response.status !== 201 ) {
           toast.error(data.error || "Something went wrong");
           return;
         }
