@@ -1,14 +1,5 @@
-const multer = require('multer');
-const path = require('path');
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); 
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  },
-});
+const multer = require("multer");
+const path = require("path");
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png|pdf/;
@@ -18,9 +9,11 @@ const fileFilter = (req, file, cb) => {
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    cb(new Error('Invalid file type. Only JPEG, JPG, PNG, and PDF are allowed.'));
+    cb(new Error("Only jpeg, jpg, png, and pdf files are allowed"));
   }
 };
+
+const storage = multer.memoryStorage(); 
 
 const upload = multer({
   storage,

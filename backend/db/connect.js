@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DB = process.env.MONGODB_URI;
+const DB = process.env.MONGODB_URI_COMPASS ;
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
@@ -9,6 +9,6 @@ mongoose.connect(DB, {
     
 })
 .then(() => {
-    console.log(`Connection successful`);
+    console.log(`Connection successful`, DB);
 })
 .catch((err) => console.log(`No connection: ${err.message}`));
