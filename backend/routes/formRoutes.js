@@ -336,5 +336,16 @@ router.get("/resume/:id", async (req, res) => {
   }
 });
 
+router.post("/delete/:id",async(req,res)=>{
+  try{
+    console.log("delete start")
+    await MMIL.findByIdAndDelete(req.params.id)
+    console.log("deleted")
+    res.status(200).send("user deleted due to resume upload failure")
+  }catch{
+    res.status(500).send("Unable to delete user")
+  }
+})
+
 
 module.exports = router;

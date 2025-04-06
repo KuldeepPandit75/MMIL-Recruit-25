@@ -89,25 +89,24 @@ function Register() {
     });
   };
 
-  const imageUpload = async (user) => {
+  const fileUpload = async (data) => {
     if (file) {
-      let formData = new FormData();
+
       const url=import.meta.env.VITE_BACKEND_URL;
-      const token=localStorage.getItem('token')
-      formData.append("resume", file);
-      formData.append("user", user);
-      const response = await axios.post(`${url}/upload-resume`,formData,{
-        headers:{
-          Authorization: token
-        }
-      });
-      if (response === 201) {
-        return response
-      }else{
-        return null
+      try {
+        let formData = new FormData();
+        formData.append("resume", file);
+        formData.append("user", data.user);
+        const response = await axios.post(`${url}/upload-resume`,formData,{
+          headers:{
+            Authorization: `Bearer ${data.token}`
+          }
+        });
+        return true
+      } catch (error) {
+        await axios.post(`${url}/delete/${data.user._id}`)
+        return false
       }
-    }else{
-      return null
     }
   }
 
@@ -136,6 +135,9 @@ function Register() {
       showTickmark(false);
     } else {
       // Final submission
+
+      const url=import.meta.env.VITE_BACKEND_URL;
+
       const requiredFields = [
         "year",
         "name",
@@ -159,24 +161,22 @@ function Register() {
 
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/name`,
+          `${url}/name`,
           {
             ...details,
             formType: "MMIL",
           }
         );
         const data = response.data;
-        const user = data.user
 
-        
-        const fileUploadResponse=await imageUpload(user);
+        const fileUploadResponse=await fileUpload(data);
 
-        if (response.status !== 201 || fileUploadResponse) {
+        if (response.status !== 201 || !fileUploadResponse) {
           toast.error(data.error || "Something went wrong");
           return;
         }
 
-        const userId = user._id;
+        const userId = data.user._id;
 
 
         if (data.token) {
