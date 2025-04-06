@@ -4,8 +4,8 @@ import bg from "/assets/bg.jpg";
 import appbg from "/assets/bg-app.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./Register.css";
-import { ToastContainer, toast } from 'react-toastify';
+import "../../Register.css";
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
@@ -27,8 +27,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url= import.meta.env.VITE_BACKEND_URL;
     try {
-      const response = await axios.post("https://recruit-mmil-4.onrender.com/login", userData);
+      const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
         const userId = response.data.userId; // Assuming the userId is returned in the response
         history(`/registered/${userId}`);

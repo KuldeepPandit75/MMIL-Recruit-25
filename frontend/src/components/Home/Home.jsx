@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-
-import bg from "../assets/bg.jpg";
-import unstop from "../assets/unstop-logo 1.png";
-import mmil from "../assets/mmil.png";
+import bg from "/assets/bg.jpg";
+import unstop from "/assets/unstop-logo 1.png";
+import mmil from "/assets/mmil.png";
 import { Link } from "react-router-dom";
-import appbg from "../assets/bg-app.svg";
-import "./Register.css";
+import appbg from "/assets/bg-app.svg";
+import "../../Register.css";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Home = () => {
   const [windowSize, setWindowSize] = useState({
@@ -16,14 +17,12 @@ const Home = () => {
   const [expandedCard, setExpandedCard] = useState(null);
   const [heightMainCard, setHeightMainCard] = useState("");
   const [positionTop, setPositionTop] = useState("83%");
-  const [direction, setDirection] = useState("right");
   const [positionMainTop, setPositionMainTop] = useState("50%");
 
   const handleCardClick = (cardName) => {
     setExpandedCard(cardName === expandedCard ? null : cardName);
     setHeightMainCard(cardName === expandedCard ? "" : "36rem");
     setPositionTop(cardName === expandedCard ? "88%" : "105%");
-    setDirection(cardName === expandedCard ? "right" : "down");
     setPositionMainTop(cardName === expandedCard ? "50%" : "60%");
   };
 
@@ -34,13 +33,9 @@ const Home = () => {
     });
   };
 
-  const [showNewElement, setShowNewElement] = useState(false);
-  const handleClickProfile = () => {
-    setShowNewElement(true);
-  };
-  const handleUnClickProfile = () => {
-    setShowNewElement(false);
-  };
+  // const closeRegToast = () => {
+  //   toast.info("Registerations are closed now!");
+  // }
 
   useEffect(() => {
     window.addEventListener("resize", updateWindowSize);
@@ -48,49 +43,6 @@ const Home = () => {
       window.removeEventListener("resize", updateWindowSize);
     };
   }, []);
-
-  const [userData, setUserData] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Define a function to fetch user data
-    const fetchUserData = async () => {
-      try {
-        // Make an HTTP GET request to fetch user data from the backend
-        const response = await fetch(
-          "https://recruit-mmil-4.onrender.com/user"
-        );
-
-        // Check if the response is successful (status code 200)
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-
-        // Parse the JSON response
-        const data = await response.json();
-
-        // Update the state with the received user data
-        setUserData(data);
-        setLoading(false); // Set loading to false once data is fetched
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-        setError(error);
-        setLoading(false); // Set loading to false on error
-      }
-    };
-
-    // Call the fetchUserData function
-    fetchUserData();
-  }, []); // Empty dependency array ensures the effect runs only once
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   return (
     <>
@@ -101,123 +53,17 @@ const Home = () => {
             alt="Your Image"
             id="imagess"
             style={{
-              width: windowSize.Width < 900 ? "100vw" : "100vw",
-              height: windowSize.Width < 900 ? "125vh" : "120vh",
+              width: windowSize.width < 900 ? "100vw" : "100vw",
+              height: windowSize.width < 900 ? "125vh" : "129vh",
               objectFit: "cover",
             }}
           />
-
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              right: "20px",
-              fontSize: "10px",
-              textAlign: "center",
-              letterSpacing: "0",
-              zIndex: "100",
-            }}
+          <Link
+            className="loginBtn"
+            to="/Login"
           >
-            {!showNewElement ? (
-              <button
-                onClick={handleClickProfile}
-                className="profile"
-                style={{
-                  borderRadius: "50%",
-                  backgroundColor: "#FFFAE7",
-                  width: "50px",
-                  height: "50px",
-                  fontSize: "18px",
-                  fontFamily: "Montserrat",
-                }}
-              >
-                {userData.name.substring(0, 1).toUpperCase()}
-              </button>
-            ) : (
-              <div
-                style={{
-                  color: "#000",
-                  backgroundColor: "#FFFAE7",
-                  padding: "5px",
-                  borderRadius: "14px",
-                  width: "240px",
-                }}
-                className="profileCard"
-              >
-                <button
-                  onClick={handleUnClickProfile}
-                  className="profile"
-                  style={{
-                    color: "#000",
-                    borderRadius: "50%",
-                    backgroundColor: "#f9d6cd",
-                    fontFamily: "Montserrat",
-                    width: "50px",
-                    height: "50px",
-                    fontSize: "18px",
-                  }}
-                >
-                  {userData.name.substring(0, 1).toUpperCase()}
-                </button>
-                <p
-                  style={{
-                    margin: "0",
-                    padding: "0",
-                    marginTop: "19px",
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {userData.name}
-                </p>
-                <hr style={{ padding: "0", margin: "0" }} />
-                <p
-                  style={{
-                    margin: "0",
-                    padding: "0",
-                    marginTop: "6px",
-                  }}
-                >
-                  {userData.email}
-                </p>
-                <p
-                  style={{
-                    margin: "0",
-                    padding: "0",
-                    marginTop: "6px",
-                  }}
-                >
-                  {userData.phoneNo}
-                </p>
-                <p
-                  style={{
-                    margin: "0",
-                    padding: "4px",
-                    marginTop: "6px",
-                    backgroundColor: "#f9d6cd",
-                    objectFit: "cover",
-                    borderRadius: "24px",
-                  }}
-                >
-                  {userData.domain}
-                </p>
-              </div>
-            )}
-          </div>
-          <Link to="/Register">
-                  <p
-                    class="fa-solid fa-arrow-right-from-bracket"
-                    title="Logout"
-                    style={{
-                      position: "absolute",
-                      top: "34px",
-                      left: "30px",
-                      fontSize: "20px",
-                      color: "white",
-                    }}
-                  ></p>
-                </Link>
-
+            Login
+          </Link>
           <div
             className="card"
             style={{
@@ -277,8 +123,10 @@ const Home = () => {
                       ></img>{" "}
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <button className="click">
-                        <a href="">Click here</a>
+                      <button className="click" style={{cursor: "not-allowed"}}>
+                        {/* <a href=""> */}
+                          Click here
+                          {/* </a> */}
                       </button>
                     </li>
                   </ul>
@@ -288,10 +136,10 @@ const Home = () => {
                 className={`fa-solid fa-chevron-${
                   expandedCard === "aptitude" ? "down" : "right"
                 }`}
-                style={{ position: "absolute", right: "34px" }}
+                style={{ position: "absolute", right: "60px" }}
               ></i>
             </div>
-            <Link to="/Technical" className="card-link">
+            {/* <Link to="/Technical" className="card-link"> */}
               <div
                 className={`technical sub-card ${
                   expandedCard === "technical" ? "expanded-technical" : ""
@@ -331,8 +179,10 @@ const Home = () => {
                       </li>
                       <li>The link to the task has been provided below.</li>
                       <li style={{ listStyle: "none" }}>
-                        <button className="click">
-                          <a href="/Technical">Click here</a>
+                        <button className="click" style={{cursor: "not-allowed"}}>
+                          {/* <a href="/Technical"> */}
+                            Click here
+                            {/* </a> */}
                         </button>
                       </li>
                     </ul>
@@ -342,10 +192,10 @@ const Home = () => {
                   className={`fa-solid fa-chevron-${
                     expandedCard === "technical" ? "down" : "right"
                   }`}
-                  style={{ position: "absolute", right: "34px" }}
+                  style={{ position: "absolute", right: "60px" }}
                 ></i>
               </div>
-            </Link>
+            {/* </Link> */}
             <div
               className={`interview sub-card ${
                 expandedCard === "interview" ? "expanded-interview" : ""
@@ -370,8 +220,8 @@ const Home = () => {
                       Instruction for Students
                     </li>
                     <li>
-                      Your interview is scheduled for [Date Yet to <br />{" "}
-                      announce] at [Time Yet to announce]. Please <br /> ensure
+                      Your interview is scheduled for 15th of <br />{" "}
+                      April at [Time Yet to announce]. Please <br /> ensure
                       you are available at least <br /> 10 minutes before the
                       scheduled time.
                     </li>
@@ -394,11 +244,19 @@ const Home = () => {
                 className={`fa-solid fa-chevron-${
                   expandedCard === "interview" ? "down" : "right"
                 }`}
-                style={{ position: "absolute", right: "34px" }}
+                style={{ position: "absolute", right: "60px" }}
               ></i>
             </div>
           </div>
           <img src={mmil} alt="Overlay Image" className="mmil-logo" />
+
+          {/* <Link to="" onClick={closeRegToast} className="link" style={{ top: positionTop }}>
+            Register Now
+          </Link> */}
+          
+          <Link to="/Register" className="link" style={{ top: positionTop }}>
+            Register Now
+          </Link>
         </div>
       </div>
     </>

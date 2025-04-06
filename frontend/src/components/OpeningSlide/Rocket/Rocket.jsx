@@ -39,7 +39,7 @@ const Rocket = () => {
       smokeElement.classList.add("moveUp");
 
       setTimeout(() => {
-        navigate("/Register");
+        navigate("/Home");
       }, 2000); 
     }
   }, [isClicked, navigate]);

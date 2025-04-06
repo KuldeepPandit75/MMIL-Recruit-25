@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import bg from "../assets/bg.jpg";
-import vector from "../assets/Vector (1).png";
-import unstop from "../assets/unstop-logo 1.png";
-import mmil from "../assets/mmil.png";
-import appbg from "../assets/bg-app.svg";
-import "./Register.css";
-import { ToastContainer, toast } from 'react-toastify';
+import bg from "/assets/bg.jpg";
+import unstop from "/assets/unstop-logo 1.png";
+import mmil from "/assets/mmil.png";
+import appbg from "/assets/bg-app.svg";
+import "../../Register.css";
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const RegisteredPage = () => {
@@ -20,30 +19,13 @@ const RegisteredPage = () => {
   });
   const [expandedCard, setExpandedCard] = useState(null);
   const [heightMainCard, setHeightMainCard] = useState("");
-  const [positionTop, setPositionTop] = useState("83%");
-  const [direction, setDirection] = useState("right");
   const [positionMainTop, setPositionMainTop] = useState("50%");
   const [showNewElement, setShowNewElement] = useState(false);
 
   const handleCardClick = (cardName) => {
     setExpandedCard(cardName === expandedCard ? null : cardName);
     setHeightMainCard(cardName === expandedCard ? "" : "36rem");
-    setPositionTop(cardName === expandedCard ? "88%" : "105%");
-    setDirection(cardName === expandedCard ? "right" : "down");
     setPositionMainTop(cardName === expandedCard ? "50%" : "60%");
-
-    // if (cardName === "technical") {
-    //   toastify();
-    // }
-  };
-  
-  const toastify = () => {
-    // Dismiss any existing toast
-    toast.dismiss();
-  
-    // Show new toast
-    toast.success("Task will be revealed after Aptitude Round.");
-  
   };
 
   const updateWindowSize = () => {
@@ -70,8 +52,9 @@ const RegisteredPage = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
+      const url=import.meta.env.VITE_BACKEND_URL;
       try {
-        const response = await axios.get(`https://recruit-mmil-4.onrender.com/user/${userId}`);
+        const response = await axios.get(`${url}/user/${userId}`);
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error.message);
@@ -87,7 +70,8 @@ const RegisteredPage = () => {
     // Navigate to the Technical page with userId
    
     try {
-      const response = await axios.post("https://recruit-mmil-4.onrender.com/login", userData);
+      const url=import.meta.env.VITE_BACKEND_URL;
+      const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
         const userId = response.data.userId; // Assuming the userId is returned in the response
         navigate(`/technical/${userId}`);
@@ -206,7 +190,7 @@ const RegisteredPage = () => {
             )}
           </div>
 
-          <Link to="/Register">
+          <Link to="/Home">
             <p
               class="fa-solid fa-arrow-right-from-bracket"
               title="Logout"
