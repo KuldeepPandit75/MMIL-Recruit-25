@@ -53,8 +53,14 @@ const RegisteredPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const url=import.meta.env.VITE_BACKEND_URL;
+      const token= localStorage.getItem('token')
       try {
-        const response = await axios.get(`${url}/user/${userId}`);
+        const response = await axios.get(`${url}/user/${userId}`,{
+          headers: {
+            Authorization: token,
+          }
+        });
+        console.log(response.data)
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error.message);
@@ -192,7 +198,7 @@ const RegisteredPage = () => {
 
           <Link to="/Home">
             <p
-              class="fa-solid fa-arrow-right-from-bracket"
+              className="fa-solid fa-arrow-right-from-bracket"
               title="Logout"
               style={{
                 position: "absolute",
@@ -235,13 +241,13 @@ const RegisteredPage = () => {
                   Technical and Logical based MCQs round.
                 </p>
                 <div
-                  class="aptitude-expanded expanded-list"
+                  className="aptitude-expanded expanded-list"
                   style={{
                     display: expandedCard === "aptitude" ? "block" : "none",
                   }}
                 >
                   <ul>
-                    <li class="instructionsStudents">
+                    <li className="instructionsStudents">
                       Instruction for Students
                     </li>
                     <li>The students has to go to unstop.com. </li>
@@ -293,13 +299,13 @@ const RegisteredPage = () => {
                     Task round to check your skills.
                   </p>
                   <div
-                    class="technical-expanded expanded-list"
+                    className="technical-expanded expanded-list"
                     style={{
                       display: expandedCard === "technical" ? "block" : "none",
                     }}
                   >
                     <ul>
-                      <li class="instructionsStudents">
+                      <li className="instructionsStudents">
                         Instruction for Students
                       </li>
                       <li>
@@ -350,13 +356,13 @@ const RegisteredPage = () => {
                   personality and coordination skills.
                 </p>
                 <div
-                  class="interview-expanded expanded-list"
+                  className="interview-expanded expanded-list"
                   style={{
                     display: expandedCard === "interview" ? "block" : "none",
                   }}
                 >
                   <ul>
-                    <li class="instructionsStudents">
+                    <li className="instructionsStudents">
                       Instruction for Students
                     </li>
                     <li>

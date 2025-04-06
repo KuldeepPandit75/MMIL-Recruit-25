@@ -95,13 +95,13 @@ const Home = () => {
                   Technical and Logical based MCQs round.
                 </p>
                 <div
-                  class="aptitude-expanded expanded-list"
+                  className="aptitude-expanded expanded-list"
                   style={{
                     display: expandedCard === "aptitude" ? "block" : "none",
                   }}
                 >
                   <ul>
-                    <li class="instructionsStudents">
+                    <li className="instructionsStudents">
                       Instruction for Students
                     </li>
                     <li>The students has to go to unstop.com. </li>
@@ -153,13 +153,13 @@ const Home = () => {
                     Task round to check your skills.
                   </p>
                   <div
-                    class="technical-expanded expanded-list"
+                    className="technical-expanded expanded-list"
                     style={{
                       display: expandedCard === "technical" ? "block" : "none",
                     }}
                   >
                     <ul>
-                      <li class="instructionsStudents">
+                      <li className="instructionsStudents">
                         Instruction for Students
                       </li>
                       <li>
@@ -210,13 +210,13 @@ const Home = () => {
                   personality and coordination skills.
                 </p>
                 <div
-                  class="interview-expanded expanded-list"
+                  className="interview-expanded expanded-list"
                   style={{
                     display: expandedCard === "interview" ? "block" : "none",
                   }}
                 >
                   <ul>
-                    <li class="instructionsStudents">
+                    <li className="instructionsStudents">
                       Instruction for Students
                     </li>
                     <li>

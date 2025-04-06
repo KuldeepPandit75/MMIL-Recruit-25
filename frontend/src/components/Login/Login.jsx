@@ -36,7 +36,7 @@ const Login = () => {
         const { userId, token } = response.data;
 
         if (token) {
-          localStorage.setItem("token", token);
+          localStorage.setItem("token", `Bearer ${token}`);
         }
 
         history(`/registered/${userId}`);
@@ -191,7 +191,7 @@ const Login = () => {
             />
           </div>
 
-          <button class="loginPageBtn" type="submit">
+          <button className="loginPageBtn" type="submit">
             Login
           </button>
           <a

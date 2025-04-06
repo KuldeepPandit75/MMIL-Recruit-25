@@ -58,9 +58,14 @@ const Design = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
+                const token=localStorage.getItem('token')
                 const response = await axios.get(
                     `${url}/user/${userId}`
-                );
+                ,{
+                    headers:{
+                        Authorization: token
+                    }
+                });
                 setUserData(response.data);
             } catch (error) {
                 console.error("Error fetching user data:", error.message);
@@ -71,6 +76,7 @@ const Design = () => {
             fetchUserData();
         }
     }, [userId]);
+
     const handleTechnicalClick = async () => {
         try {
             const response = await axios.post(

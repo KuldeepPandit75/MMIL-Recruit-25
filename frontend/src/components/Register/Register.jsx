@@ -155,7 +155,7 @@ function Register() {
         const userId = data.user._id;
 
         if (data.token) {
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("token", `Bearer ${data.token}`);
         }
 
         toast.success("Registration Successful!");
