@@ -17,7 +17,6 @@ function Register() {
     email: "",
     phoneNo: null,
     domain: "",
-    resume: null,
   };
 
   const [detBox, setDetBox] = useState("Year");
@@ -90,6 +89,28 @@ function Register() {
     });
   };
 
+  const imageUpload = async (user) => {
+    if (file) {
+      let formData = new FormData();
+      const url=import.meta.env.VITE_BACKEND_URL;
+      const token=localStorage.getItem('token')
+      formData.append("resume", file);
+      formData.append("user", user);
+      const response = await axios.post(`${url}/upload-resume`,formData,{
+        headers:{
+          Authorization: token
+        }
+      });
+      if (response === 201) {
+        return response
+      }else{
+        return null
+      }
+    }else{
+      return null
+    }
+  }
+
   const handleTickClick = async () => {
     if (detBox === "Year") {
       setDetBox("Name");
@@ -145,14 +166,18 @@ function Register() {
           }
         );
         const data = response.data;
-        console.log(data);
+        const user = data.user
 
-        if (response.status !== 201) {
+        
+        const fileUploadResponse=await imageUpload(user);
+
+        if (response.status !== 201 || fileUploadResponse) {
           toast.error(data.error || "Something went wrong");
           return;
         }
 
-        const userId = data.user._id;
+        const userId = user._id;
+
 
         if (data.token) {
           localStorage.setItem("token", `Bearer ${data.token}`);
@@ -446,8 +471,8 @@ function Register() {
               detBox == "Domain" || detBox == "Resume"
                 ? "27rem"
                 : detBox == "Congrats"
-                ? "23rem"
-                : "18.5rem",
+                  ? "23rem"
+                  : "18.5rem",
           }}
         >
           {/* Your card content goes here */}
