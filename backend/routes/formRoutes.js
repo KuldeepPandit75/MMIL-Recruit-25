@@ -37,6 +37,7 @@ router.post("/name", async (req, res) => {
   try {
     const { formType } = req.body;
     let token;
+    let user;
 
     if (!formType) {
       return res.status(422).json({ error: "Form type is required" });
@@ -66,7 +67,7 @@ router.post("/name", async (req, res) => {
           return res.status(422).json({ error: "Email already exists" });
         }
 
-        const user = new MMIL({
+        user = new MMIL({
           year,
           name,
           rollNo,
@@ -143,7 +144,7 @@ router.post("/name", async (req, res) => {
         return res.status(422).json({ error: "Invalid form type" });
     }
 
-    const response = { message: "Form submitted successfully" };
+    const response = { message: "Form submitted successfully", user};
     if (token) response.token = token;
 
     res.status(201).json(response);
@@ -258,6 +259,7 @@ router.post("/login", async (req, res) => {
     res.status(200).json({
       message: "Login successful",
       token,
+      user,
       userId: user._id,
     });
   } catch (error) {

@@ -5,8 +5,8 @@ import appbg from "/assets/bg-app.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../Register.css";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -27,11 +27,18 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url= import.meta.env.VITE_BACKEND_URL;
+    const url = import.meta.env.VITE_BACKEND_URL;
+
     try {
       const response = await axios.post(`${url}/login`, userData);
+
       if (response.status === 200) {
-        const userId = response.data.userId; // Assuming the userId is returned in the response
+        const { userId, token } = response.data;
+
+        if (token) {
+          localStorage.setItem("token", token);
+        }
+
         history(`/registered/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
@@ -39,12 +46,11 @@ const Login = () => {
     } catch (error) {
       console.error("Login error:", error);
       toast.error("User not registered! Register using a unique email id.");
-      toast.error(error);
     }
   };
-  
+
   return (
-    <div style={{ position: "relative", overflow:'hidden', display:'flex' }}>
+    <div style={{ position: "relative", overflow: "hidden", display: "flex" }}>
       <img
         src={windowSize.width <= 900 ? appbg : bg}
         alt="Your Image"
@@ -72,7 +78,7 @@ const Login = () => {
           // display:'flex',
           // flexDirection:'column',
           // alignItems:'center',
-          textAlign:'center'
+          textAlign: "center",
         }}
       >
         {/* Your card content goes here */}
@@ -84,7 +90,7 @@ const Login = () => {
             letterSpacing: "2px",
             height: "80px",
             marginTop: "16px",
-            marginBottom:'20px',
+            marginBottom: "20px",
             color: "white",
           }}
         >
@@ -126,9 +132,9 @@ const Login = () => {
                 padding: "6px",
                 color: "white",
                 outline: "none",
-                fontSize:"16px",
-                height:'1.5rem',
-                textAlign:'center'
+                fontSize: "16px",
+                height: "1.5rem",
+                textAlign: "center",
               }}
               type="tel"
               name="phoneNo"
@@ -173,9 +179,9 @@ const Login = () => {
                 padding: "6px",
                 color: "white",
                 outline: "none",
-                fontSize:'16px',
-                height:'1.5rem',
-                textAlign:'center'
+                fontSize: "16px",
+                height: "1.5rem",
+                textAlign: "center",
               }}
               type="email"
               name="email"
@@ -185,11 +191,7 @@ const Login = () => {
             />
           </div>
 
-         
-          <button
-          class= "loginPageBtn"
-            type="submit"
-          >
+          <button class="loginPageBtn" type="submit">
             Login
           </button>
           <a
