@@ -22,6 +22,15 @@ const RegisteredPage = () => {
   const [positionMainTop, setPositionMainTop] = useState("50%");
   const [showNewElement, setShowNewElement] = useState(false);
 
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const handleCardClick = (cardName) => {
     setExpandedCard(cardName === expandedCard ? null : cardName);
     setHeightMainCard(cardName === expandedCard ? "" : "36rem");
@@ -73,12 +82,11 @@ const RegisteredPage = () => {
   }, [userId]);
 
   const handleTechnicalClick = async () => {
-
     try {
       const url = import.meta.env.VITE_BACKEND_URL;
       const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
-        const userId = response.data.userId; 
+        const userId = response.data.userId;
         navigate(`/technical/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
