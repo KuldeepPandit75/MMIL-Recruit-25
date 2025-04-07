@@ -347,11 +347,7 @@ const RegisteredPage = () => {
                     </li>
                     <li>The link to the task has been provided below.</li>
                     <li style={{ listStyle: "none" }}>
-                      <button
-                        className="click"
-                        // onClick={handleTechnicalClick}
-                        style={{ cursor: "not-allowed" }}
-                      >
+                      <button className="click" onClick={handleTechnicalClick}>
                         {/* <Link to="/Technical"> */}
                         Click here
                         {/* </Link> */}
