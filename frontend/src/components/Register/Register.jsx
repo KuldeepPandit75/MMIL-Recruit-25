@@ -458,7 +458,7 @@ function Register() {
           style={{
             width: windowSize.width < 900 ? "100vw" : "100vw", // Adjust as needed
             height: windowSize.width < 900 ? "100vh" : "100vh", // Adjust as needed
-            objectFit: "cover", // Adjust as needed
+             // Adjust as needed
           }}
         />
 
@@ -588,7 +588,6 @@ function Register() {
                   left: "30%",
                   width: "50%",
                   height: "34%",
-                  objectFit: "cover",
                   borderRadius: "10px",
                   opacity: 1,
                 }}
