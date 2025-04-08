@@ -771,11 +771,11 @@ function Register() {
                 alt="Overlay Image"
                 style={{
                   position: "absolute",
-                  marginTop: "-20%",
-                  top: "-20%",
+                  marginTop: "-16%",
+                  top: "-15%",
                   left: "30%",
-                  width: "46%",
-                  height: "35%",
+                  width: "50%",
+                  height: "34%",
                   opacity: "1",
                 }}
               />
