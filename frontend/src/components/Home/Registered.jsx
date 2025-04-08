@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link,useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import bg from "/assets/bg.jpg";
 import unstop from "/assets/unstop-logo 1.png";
 import mmil from "/assets/mmil.png";
 import appbg from "/assets/bg-app.svg";
 import "../../Register.css";
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisteredPage = () => {
-  const { userId } = useParams(); 
-  const navigate = useNavigate(); 
+  const { userId } = useParams();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -21,6 +21,15 @@ const RegisteredPage = () => {
   const [heightMainCard, setHeightMainCard] = useState("");
   const [positionMainTop, setPositionMainTop] = useState("50%");
   const [showNewElement, setShowNewElement] = useState(false);
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleCardClick = (cardName) => {
     setExpandedCard(cardName === expandedCard ? null : cardName);
@@ -38,7 +47,7 @@ const RegisteredPage = () => {
   const handleClickProfile = () => {
     setShowNewElement(true);
   };
-  
+
   const handleUnClickProfile = () => {
     setShowNewElement(false);
   };
@@ -52,34 +61,32 @@ const RegisteredPage = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const url=import.meta.env.VITE_BACKEND_URL;
-      const token= localStorage.getItem('token')
+      const url = import.meta.env.VITE_BACKEND_URL;
+      const token = localStorage.getItem("token");
       try {
-        const response = await axios.get(`${url}/user/${userId}`,{
+        const response = await axios.get(`${url}/user/${userId}`, {
           headers: {
             Authorization: token,
-          }
+          },
         });
-        console.log(response.data)
+        console.log(response.data);
         setUserData(response.data);
       } catch (error) {
-        console.error('Error fetching user data:', error.message);
+        console.error("Error fetching user data:", error.message);
       }
     };
 
-    if (userId) { 
+    if (userId) {
       fetchUserData();
     }
   }, [userId]);
 
   const handleTechnicalClick = async () => {
-    // Navigate to the Technical page with userId
-   
     try {
-      const url=import.meta.env.VITE_BACKEND_URL;
+      const url = import.meta.env.VITE_BACKEND_URL;
       const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
-        const userId = response.data.userId; // Assuming the userId is returned in the response
+        const userId = response.data.userId;
         navigate(`/technical/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
@@ -89,7 +96,6 @@ const RegisteredPage = () => {
       toast.error("User not registered! Register using a unique email id.");
       toast.error(error);
     }
-   
   };
 
   return (
@@ -115,7 +121,7 @@ const RegisteredPage = () => {
               fontSize: "10px",
               textAlign: "center",
               letterSpacing: "0",
-              zIndex: "100"
+              zIndex: "100",
             }}
           >
             {!showNewElement ? (
@@ -130,7 +136,9 @@ const RegisteredPage = () => {
                   fontSize: "18px",
                   fontFamily: "Montserrat",
                 }}
-              >{userData ? userData.name.substring(0, 1).toUpperCase() : ''}</button>
+              >
+                {userData ? userData.name.substring(0, 1).toUpperCase() : ""}
+              </button>
             ) : (
               <div
                 style={{
@@ -152,51 +160,62 @@ const RegisteredPage = () => {
                     fontFamily: "Montserrat",
                     width: "50px",
                     height: "50px",
-                    fontSize: "18px"
+                    fontSize: "18px",
                   }}
                 >
-                  {userData ? userData.name.substring(0, 1).toUpperCase() : ''}
+                  {userData ? userData.name.substring(0, 1).toUpperCase() : ""}
                 </button>
                 {userData && (
                   <>
-                    <p style={{
-                      margin: "0",
-                      padding: "0",
-                      marginTop: "19px",
-                      fontSize: "14px",
-                      fontWeight: "bold"
-                    }}>{userData.name}</p>
-                    <hr
-                      style={{ padding: "0", margin: "0" }}
-                    />
-                    <p style={{
-                      margin: "0",
-                      padding: "0",
-                      marginTop: "6px",
-                    }}
-                    >{userData.email}</p>
-                    <p style={{
-                      margin: "0",
-                      padding: "0",
-                      marginTop: "6px",
-                    }}
-                    >{userData.phoneNo}</p>
-                    <p style={{
-                      margin: "0",
-                      padding: "4px",
-                      marginTop: "6px",
-                      backgroundColor: "#f9d6cd",
-                      objectFit: "cover",
-                      borderRadius: "24px",
-                    }}
-                    >{userData.domain}</p>
+                    <p
+                      style={{
+                        margin: "0",
+                        padding: "0",
+                        marginTop: "19px",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {userData.name}
+                    </p>
+                    <hr style={{ padding: "0", margin: "0" }} />
+                    <p
+                      style={{
+                        margin: "0",
+                        padding: "0",
+                        marginTop: "6px",
+                      }}
+                    >
+                      {userData.email}
+                    </p>
+                    <p
+                      style={{
+                        margin: "0",
+                        padding: "0",
+                        marginTop: "6px",
+                      }}
+                    >
+                      {userData.phoneNo}
+                    </p>
+                    <p
+                      style={{
+                        margin: "0",
+                        padding: "4px",
+                        marginTop: "6px",
+                        backgroundColor: "#f9d6cd",
+                        objectFit: "cover",
+                        borderRadius: "24px",
+                      }}
+                    >
+                      {userData.domain}
+                    </p>
                   </>
                 )}
               </div>
             )}
           </div>
 
-          <Link to="/Home">
+          <Link to="/logout">
             <p
               className="fa-solid fa-arrow-right-from-bracket"
               title="Logout"
@@ -269,10 +288,13 @@ const RegisteredPage = () => {
                       ></img>{" "}
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <button className="click" style={{cursor: "not-allowed"}}>
+                      <button
+                        className="click"
+                        style={{ cursor: "not-allowed" }}
+                      >
                         {/* <a href=""> */}
-                          Click here
-                          {/* </a> */}
+                        Click here
+                        {/* </a> */}
                       </button>
                     </li>
                   </ul>
@@ -285,63 +307,63 @@ const RegisteredPage = () => {
                 style={{ position: "absolute", right: "34px" }}
               ></i>
             </div>
-            
-              <div
-                className={`technical sub-card ${
-                  expandedCard === "technical" ? "expanded-technical" : ""
-                }`}
-                onClick={() => handleCardClick("technical")}
-              >
-                <div>
-                  <p className="roundNo">Round 2</p>
-                  <p className="roundName">Technical Round</p>
-                  <p className="roundDescription">
-                    Task round to check your skills.
-                  </p>
-                  <div
-                    className="technical-expanded expanded-list"
-                    style={{
-                      display: expandedCard === "technical" ? "block" : "none",
-                    }}
-                  >
-                    <ul>
-                      <li className="instructionsStudents">
-                        Instruction for Students
-                      </li>
-                      <li>
-                        {" "}
-                        Pay attention to details and follow the <br />{" "}
-                        instructions provided.
-                      </li>
-                      <li>
-                        {" "}
-                        Use this opportunity to showcase your <br /> skills and
-                        approach to problem-solving.
-                      </li>
-                      <li>
-                        {" "}
-                        The students has to complete the task <br /> before the
-                        deadline.
-                      </li>
-                      <li>The link to the task has been provided below.</li>
-                      <li style={{ listStyle: "none" }}>
-                        <button className="click" onClick={handleTechnicalClick}>
-                          {/* <Link to="/Technical"> */}
-                            Click here
-                            {/* </Link> */}
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
+
+            <div
+              className={`technical sub-card ${
+                expandedCard === "technical" ? "expanded-technical" : ""
+              }`}
+              onClick={() => handleCardClick("technical")}
+            >
+              <div>
+                <p className="roundNo">Round 2</p>
+                <p className="roundName">Technical Round</p>
+                <p className="roundDescription">
+                  Task round to check your skills.
+                </p>
+                <div
+                  className="technical-expanded expanded-list"
+                  style={{
+                    display: expandedCard === "technical" ? "block" : "none",
+                  }}
+                >
+                  <ul>
+                    <li className="instructionsStudents">
+                      Instruction for Students
+                    </li>
+                    <li>
+                      {" "}
+                      Pay attention to details and follow the <br />{" "}
+                      instructions provided.
+                    </li>
+                    <li>
+                      {" "}
+                      Use this opportunity to showcase your <br /> skills and
+                      approach to problem-solving.
+                    </li>
+                    <li>
+                      {" "}
+                      The students has to complete the task <br /> before the
+                      deadline.
+                    </li>
+                    <li>The link to the task has been provided below.</li>
+                    <li style={{ listStyle: "none" }}>
+                      <button className="click" onClick={handleTechnicalClick}>
+                        {/* <Link to="/Technical"> */}
+                        Click here
+                        {/* </Link> */}
+                      </button>
+                    </li>
+                  </ul>
                 </div>
-                <i
-                  className={`fa-solid fa-chevron-${
-                    expandedCard === "technical" ? "down" : "right"
-                  }`}
-                  style={{ position: "absolute", right: "34px" }}
-                ></i>
               </div>
-           
+              <i
+                className={`fa-solid fa-chevron-${
+                  expandedCard === "technical" ? "down" : "right"
+                }`}
+                style={{ position: "absolute", right: "34px" }}
+              ></i>
+            </div>
+
             <div
               className={`interview sub-card ${
                 expandedCard === "interview" ? "expanded-interview" : ""

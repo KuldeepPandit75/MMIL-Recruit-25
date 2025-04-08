@@ -92,13 +92,13 @@ function Register() {
   const fileUpload = async (data) => {
     if (file) {
 
-      const url=import.meta.env.VITE_BACKEND_URL;
+      const url = import.meta.env.VITE_BACKEND_URL;
       try {
         let formData = new FormData();
         formData.append("resume", file);
         formData.append("user", data.user);
-        const response = await axios.post(`${url}/upload-resume`,formData,{
-          headers:{
+        const response = await axios.post(`${url}/upload-resume`, formData, {
+          headers: {
             Authorization: `Bearer ${data.token}`
           }
         });
@@ -136,7 +136,7 @@ function Register() {
     } else {
       // Final submission
 
-      const url=import.meta.env.VITE_BACKEND_URL;
+      const url = import.meta.env.VITE_BACKEND_URL;
 
       const requiredFields = [
         "year",
@@ -160,6 +160,10 @@ function Register() {
       console.log("Submitting Details:", details);
 
       try {
+        showTickmark(false)
+
+        let a=toast.loading('Registration In process!')
+
         const response = await axios.post(
           `${url}/name`,
           {
@@ -170,16 +174,16 @@ function Register() {
         const data = response.data;
 
 
-        if(details.year=="2nd year"){
+        if (details.year == "2nd year") {
 
-          const fileUploadResponse=await fileUpload(data);
-          if(!fileUploadResponse){
+          const fileUploadResponse = await fileUpload(data);
+          if (!fileUploadResponse) {
             toast.error(data.error || "File Upload Failed!");
-          return;
+            return;
           }
         }
 
-        if (response.status !== 201 ) {
+        if (response.status !== 201) {
           toast.error(data.error || "Something went wrong");
           return;
         }
@@ -190,7 +194,7 @@ function Register() {
         if (data.token) {
           localStorage.setItem("token", `Bearer ${data.token}`);
         }
-
+        toast.done(a)
         toast.success("Registration Successful!");
         setDetBox("Congrats");
 

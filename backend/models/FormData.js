@@ -10,7 +10,7 @@ const FormData = new mongoose.Schema({
         required:true
     },
     rollNo:{
-        type:Number,
+        type:String,
         required:true
     },
     email:{
