@@ -84,7 +84,7 @@ const Login = () => {
         {/* Your card content goes here */}
         <p
           style={{
-            fontSize: "44px",
+            fontSize: "40px",
             fontFamily: "Montserrat",
             fontWeight: "ExtraBold",
             letterSpacing: "2px",
