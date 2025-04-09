@@ -105,8 +105,8 @@ const RegisteredPage = () => {
             alt="Your Image"
             id="imagess"
             style={{
-              width: windowSize.Width < 900 ? "100vw" : "100vw",
-              height: windowSize.Width < 900 ? "125vh" : "120vh",
+              width: windowSize.width < 900 ? "100vw" : "100vw",
+              height: windowSize.width < 900 ? "125vh" : "120vh",
               objectFit: "cover",
             }}
           />
@@ -286,7 +286,7 @@ const RegisteredPage = () => {
                       ></img>{" "}
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <button
+                      <button disabled
                         className="click"
                         style={{ cursor: "not-allowed" }}
                       >
@@ -345,7 +345,9 @@ const RegisteredPage = () => {
                     </li>
                     <li>The link to the task has been provided below.</li>
                     <li style={{ listStyle: "none" }}>
-                      <button className="click" onClick={handleTechnicalClick}>
+                      <button disabled className="click" onClick={handleTechnicalClick}
+                        style={{cursor:'not-allowed'}}
+                      >
                         {/* <Link to="/Technical"> */}
                         Click here
                         {/* </Link> */}
