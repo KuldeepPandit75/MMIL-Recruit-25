@@ -129,7 +129,7 @@ const Android = () => {
       const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
         const userId = response.data.userId; // Assuming the userId is returned in the response
-        navigate(`/Android/${userId}`);
+        navigate(`/Technical-Domain/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
       }
@@ -262,7 +262,7 @@ const Android = () => {
               <li onClick={handleProgramingClick}>Programming</li>
               <li onClick={handleWebDevClick}>Web Dev</li>
               <li className="and" onClick={handleAndroidClick}>
-                Android
+                Technical
               </li>
             </ul>
             <Link to={`/Technical/${userId}`}>
@@ -275,7 +275,7 @@ const Android = () => {
             <p>Tasks</p>
             <div className="webdev">
               <p>Round 2</p>
-              <h1 className="heading ">Android</h1>
+              <h1 className="heading ">Technical</h1>
               <h6 className="task">Task round to check your skills</h6>
               <h5>Instructions for Students</h5>
               <ul>
@@ -290,7 +290,7 @@ const Android = () => {
                   </Link>
                   .
                 </li>
-                <li>The task deadline is 3pm IST on 14-04-2024. </li>
+                <li>The task deadline is 3pm IST on 14-04-2025. </li>
                 <li>Task should be submitted below.</li>
                 <li>
                   Apk should be uploaded on Google drive and attached below.

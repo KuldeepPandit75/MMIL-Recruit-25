@@ -119,7 +119,7 @@ const Design = () => {
       const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
         const userId = response.data.userId; // Assuming the userId is returned in the response
-        navigate(`/Android/${userId}`);
+        navigate(`/Technical-Domain/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
       }
@@ -251,7 +251,7 @@ const Design = () => {
             </li>
             <li onClick={handleProgramingClick}>Programming</li>
             <li onClick={handleWebDevClick}>Web Dev</li>
-            <li onClick={handleAndroidClick}>Android</li>
+            <li onClick={handleAndroidClick}>Technical</li>
           </ul>
           <Link to={`/Technical/${userId}`}>
             <i className="fa-solid fa-arrow-left backBtn"></i>
@@ -277,7 +277,7 @@ const Design = () => {
                 </a>
                 .
               </li>
-              <li> The task deadline is 3pm IST on 14-04-2024. </li>
+              <li> The task deadline is 3pm IST on 14-04-2025. </li>
               <li>
                 The students has to complete the task in before the deadline.
               </li>

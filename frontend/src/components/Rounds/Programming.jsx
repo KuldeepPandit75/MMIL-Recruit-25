@@ -117,7 +117,7 @@ const Programming = () => {
       const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
         const userId = response.data.userId; // Assuming the userId is returned in the response
-        navigate(`/Android/${userId}`);
+        navigate(`/Technical-Domain/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
       }
@@ -251,7 +251,7 @@ const Programming = () => {
               Programming
             </li>
             <li onClick={handleWebDevClick}>Web Dev</li>
-            <li onClick={handleAndroidClick}>Android</li>
+            <li onClick={handleAndroidClick}>Technical</li>
           </ul>
           <Link to={`/Technical/${userId}`}>
             <i className="fa-solid fa-arrow-left backBtn"></i>
@@ -283,7 +283,7 @@ const Programming = () => {
               <li>It will be of 2 hours and will contain 5 questions. </li>
               <li>
                 The contest timing will be from 7pm to 9pm <br /> IST on
-                13-04-24.
+                13-04-25.
               </li>
               <li>
                 Please sign up on Hackerank.com <br />

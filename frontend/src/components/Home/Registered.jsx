@@ -22,8 +22,6 @@ const RegisteredPage = () => {
   const [positionMainTop, setPositionMainTop] = useState("50%");
   const [showNewElement, setShowNewElement] = useState(false);
 
-  const token = localStorage.getItem("token");
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {

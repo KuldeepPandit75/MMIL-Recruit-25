@@ -85,7 +85,7 @@ const Technical = () => {
       const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
         const userId = response.data.userId; // Assuming the userId is returned in the response
-        navigate(`/Android/${userId}`);
+        navigate(`/Technical-Domain/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
       }
@@ -224,7 +224,7 @@ const Technical = () => {
             </li>
             <li onClick={handleProgramingClick}>Programming</li>
             <li onClick={handleWebDevClick}>Web Dev</li>
-            <li onClick={handleAndroidClick}>Android</li>
+            <li onClick={handleAndroidClick}>Technical</li>
           </ul>
         </div>
         <Link to={`/Registered/${userId}`}>
