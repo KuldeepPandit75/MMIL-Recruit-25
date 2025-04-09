@@ -227,7 +227,7 @@ const Technical = () => {
                         <li className='design' onClick={handleTechnicalClick}>Design</li>
                         <li onClick={handleProgramingClick}>Programming</li>
                         <li onClick={handleWebDevClick}>Web Dev</li>
-                        <li onClick={handleAndroidClick}>Android</li>
+                        <li onClick={handleAndroidClick}>Technical</li>
                     </ul>
                 </div>
                 <Link to={`/Registered/${userId}`}>
