@@ -1179,7 +1179,7 @@ function Register() {
                 }}
               >
                 <p
-                  class="fa-solid fa-circle-check"
+                  className="fa-solid fa-circle-check"
                   style={{
                     color: isHoverTickmark ? "#ffffff" : "#FFE454",
                     fontSize: "4.2rem",
@@ -1238,7 +1238,7 @@ function Register() {
 
               <div className="dropzone">
                 <p
-                  class="fa-regular fa-file-lines"
+                  className="fa-regular fa-file-lines"
                   style={{ fontSize: "44px", margin: "15px", color: "white" }}
                 ></p>
                 <div>
@@ -1281,7 +1281,7 @@ function Register() {
 
               <div onClick={handleTickClick}>
                 <p
-                  class="fa-solid fa-circle-check"
+                  className="fa-solid fa-circle-check"
                   style={{
                     color: isHoverTickmark ? "#ffffff" : "#FFE454",
                     fontSize: "4.2rem",
