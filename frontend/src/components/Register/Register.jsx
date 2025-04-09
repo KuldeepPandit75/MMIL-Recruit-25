@@ -516,53 +516,60 @@ function Register() {
               >
                 Choose your year?
               </p>
+              <div
+  style={{
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    gap: "20px", // optional: spacing between buttons
+    width: "100%", // makes it span the container
+    padding: "0 20px", // optional: add side padding
+  }}
+>
+  <div
+    className="btn"
+    style={{
+      border: "2px solid #FFE454",
+      borderRadius: "17px",
+      backgroundColor:
+        isHovering1 || isActive1 ? "#1a1a1a" : "#FFE454",
+      color: isHovering1 || isActive1 ? "#FFE454" : "#1a1a1a",
+      fontWeight: "bold",
+      width: "70px",
+      fontFamily: "Montserrat",
+      padding: "5px 5px",
+      cursor: "pointer",
+      textAlign: "center",
+    }}
+    onMouseEnter={handleMouseEnter1}
+    onMouseLeave={handleMouseLeave1}
+    onClick={handleActive1}
+  >
+    1st
+  </div>
+  <div
+    className="btn"
+    style={{
+      border: "2px solid #FFE454",
+      borderRadius: "17px",
+      backgroundColor:
+        isHovering2 || isActive2 ? "#1a1a1a" : "#FFE454",
+      color: isHovering2 || isActive2 ? "#FFE454" : "#1a1a1a",
+      fontWeight: "bold",
+      width: "70px",
+      fontFamily: "Montserrat",
+      padding: "5px 5px",
+      cursor: "pointer",
+      textAlign: "center",
+    }}
+    onMouseEnter={handleMouseEnter2}
+    onMouseLeave={handleMouseLeave2}
+    onClick={handleActive2}
+  >
+    2nd
+  </div>
+</div>
 
-              <div style={{ display: "flex" }}>
-                <div
-                  className="btn"
-                  style={{
-                    border: "2px solid #FFE454",
-                    borderRadius: "17px",
-                    backgroundColor:
-                      isHovering1 || isActive1 ? "#1a1a1a" : "#FFE454",
-                    color: isHovering1 || isActive1 ? "#FFE454" : "#1a1a1a",
-                    fontWeight: "bold",
-                    marginLeft: "68px",
-                    width: "70px",
-                    fontFamily: "Montserrat",
-                    fontWieght: "Bold",
-                    padding: "5px 5px",
-                    cursor: "pointer",
-                  }}
-                  onMouseEnter={handleMouseEnter1}
-                  onMouseLeave={handleMouseLeave1}
-                  onClick={handleActive1}
-                >
-                  1st
-                </div>
-                <div
-                  className="btn"
-                  style={{
-                    border: "2px solid #FFE454",
-                    borderRadius: "17px",
-                    backgroundColor:
-                      isHovering2 || isActive2 ? "#1a1a1a" : "#FFE454",
-                    color: isHovering2 || isActive2 ? "#FFE454" : "#1a1a1a",
-                    fontWeight: "bold",
-                    marginLeft: "80px",
-                    width: "70px",
-                    fontFamily: "Montserrat",
-                    fontWieght: "Bold",
-                    padding: "5px 5px",
-                    cursor: "pointer",
-                  }}
-                  onMouseEnter={handleMouseEnter2}
-                  onMouseLeave={handleMouseLeave2}
-                  onClick={handleActive2}
-                >
-                  2nd
-                </div>
-              </div>
               <div
                 onClick={handleTickClick}
                 style={{
