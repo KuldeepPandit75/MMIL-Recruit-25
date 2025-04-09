@@ -66,7 +66,7 @@ const RegisteredPage = () => {
       try {
         const response = await axios.get(`${url}/user/${userId}`, {
           headers: {
-            Authorization: token,
+            Authorization: `Bearer ${token}`, 
           },
         });
         console.log(response.data);

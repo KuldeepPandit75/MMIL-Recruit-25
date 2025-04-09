@@ -1,22 +1,22 @@
 // frontend/Design.js
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import bg from "/assets/bg.jpg";
 import appbg from "/assets/bg-app.jpg";
-import './design.css';
+import "./design.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import mmil from "/assets/1000058712_f1beee89cb94ffdbc7b3a05cbdf6e5cc-30_9_2023, 1_42_36 pm 2.png";
 
 const Webdev = () => {
   const { userId } = useParams();
-  const navigate = useNavigate()
-  const [phoneNo, setPhoneNo] = useState('');
+  const navigate = useNavigate();
+  const [phoneNo, setPhoneNo] = useState("");
   const [userData, setUserData] = useState(null);
-  const [githubLink, setGithubLink] = useState('');
-  const [websiteLink, setWebsiteLink] = useState('');
+  const [githubLink, setGithubLink] = useState("");
+  const [websiteLink, setWebsiteLink] = useState("");
   const [showNewElement, setShowNewElement] = useState(false);
   const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -24,56 +24,54 @@ const Webdev = () => {
     setShowNewElement(true);
   };
 
-
-
   const handleUnClickProfile = () => {
     setShowNewElement(false);
   };
 
   const handleToast = () => {
     toast.success("Tasks submitted successfully");
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(`${url}/name`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          formType: 'WebDev',
+          formType: "WebDev",
           phoneNo,
           githubLink,
-          hostedSiteLink: websiteLink
-        })
+          hostedSiteLink: websiteLink,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit form');
+        throw new Error("Failed to submit form");
       }
-      console.log('Form submitted successfully');
+      console.log("Form submitted successfully");
       handleToast();
       setPhoneNo("");
       setGithubLink("");
       setWebsiteLink("");
     } catch (error) {
-      console.error('Failed to submit form', error);
+      console.error("Failed to submit form", error);
     }
   };
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem("token");
         const response = await axios.get(`${url}/user/${userId}`, {
           headers: {
-            Authorization: token
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setUserData(response.data);
       } catch (error) {
-        console.error('Error fetching user data:', error.message);
+        console.error("Error fetching user data:", error.message);
       }
     };
 
@@ -95,10 +93,7 @@ const Webdev = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-
     }
-
-
   };
   const handleProgramingClick = async () => {
     // Navigate to the Technical page with userId
@@ -113,10 +108,7 @@ const Webdev = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-
     }
-
-
   };
   const handleWebDevClick = async () => {
     // Navigate to the Technical page with userId
@@ -131,10 +123,7 @@ const Webdev = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-
     }
-
-
   };
   const handleAndroidClick = async () => {
     // Navigate to the Technical page with userId
@@ -149,14 +138,11 @@ const Webdev = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-
     }
-
-
   };
   return (
-    <div className='main'>
-      <div style={{ display: 'flex ' }}>
+    <div className="main">
+      <div style={{ display: "flex " }}>
         <img
           src={window.innerWidth <= 900 ? appbg : bg}
           style={{
@@ -165,11 +151,8 @@ const Webdev = () => {
           alt="Your Image"
         />
       </div>
-      <div id='first'>
-        <img
-          src={mmil}
-          alt="Overlay Image"
-        />
+      <div id="first">
+        <img src={mmil} alt="Overlay Image" />
       </div>
       <div
         style={{
@@ -179,7 +162,7 @@ const Webdev = () => {
           fontSize: "10px",
           textAlign: "center",
           letterSpacing: "0",
-          zIndex: "100"
+          zIndex: "100",
         }}
       >
         {!showNewElement ? (
@@ -194,7 +177,9 @@ const Webdev = () => {
               fontSize: "18px",
               fontFamily: "Montserrat",
             }}
-          >{userData ? userData.name.substring(0, 1).toUpperCase() : ''}</button>
+          >
+            {userData ? userData.name.substring(0, 1).toUpperCase() : ""}
+          </button>
         ) : (
           <div
             style={{
@@ -216,55 +201,70 @@ const Webdev = () => {
                 fontFamily: "Montserrat",
                 width: "50px",
                 height: "50px",
-                fontSize: "18px"
+                fontSize: "18px",
               }}
             >
-              {userData ? userData.name.substring(0, 1) : ''}
+              {userData ? userData.name.substring(0, 1) : ""}
             </button>
             {userData && (
               <>
-                <p style={{
-                  margin: "0",
-                  padding: "0",
-                  marginTop: "19px",
-                  fontSize: "14px",
-                  fontWeight: "bold"
-                }}>{userData.name}</p>
-                <hr
-                  style={{ padding: "0", margin: "0" }}
-                />
-                <p style={{
-                  margin: "0",
-                  padding: "0",
-                  marginTop: "6px",
-                }}
-                >{userData.email}</p>
-                <p style={{
-                  margin: "0",
-                  padding: "0",
-                  marginTop: "6px",
-                }}
-                >{userData.phoneNo}</p>
-                <p style={{
-                  margin: "0",
-                  padding: "4px",
-                  marginTop: "6px",
-                  backgroundColor: "#f9d6cd",
-                  objectFit: "cover",
-                  borderRadius: "24px",
-                }}
-                >{userData.domain}</p>
+                <p
+                  style={{
+                    margin: "0",
+                    padding: "0",
+                    marginTop: "19px",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {userData.name}
+                </p>
+                <hr style={{ padding: "0", margin: "0" }} />
+                <p
+                  style={{
+                    margin: "0",
+                    padding: "0",
+                    marginTop: "6px",
+                  }}
+                >
+                  {userData.email}
+                </p>
+                <p
+                  style={{
+                    margin: "0",
+                    padding: "0",
+                    marginTop: "6px",
+                  }}
+                >
+                  {userData.phoneNo}
+                </p>
+                <p
+                  style={{
+                    margin: "0",
+                    padding: "4px",
+                    marginTop: "6px",
+                    backgroundColor: "#f9d6cd",
+                    objectFit: "cover",
+                    borderRadius: "24px",
+                  }}
+                >
+                  {userData.domain}
+                </p>
               </>
             )}
           </div>
         )}
       </div>
-      <div className='domains'>
-        <div className='fields'>
+      <div className="domains">
+        <div className="fields">
           <ul>
-            <li className='design' onClick={handleTechnicalClick}>Design</li>
+            <li className="design" onClick={handleTechnicalClick}>
+              Design
+            </li>
             <li onClick={handleProgramingClick}>Programming</li>
-            <li className='web' onClick={handleWebDevClick}>Web Dev</li>
+            <li className="web" onClick={handleWebDevClick}>
+              Web Dev
+            </li>
             <li onClick={handleAndroidClick}>Android</li>
           </ul>
           <Link to={`/Technical/${userId}`}>
@@ -272,24 +272,37 @@ const Webdev = () => {
           </Link>
         </div>
       </div>
-      <div className='container'>
-        <div className='rounds'>
+      <div className="container">
+        <div className="rounds">
           <p>Tasks</p>
-          <div className='webdev'>
+          <div className="webdev">
             <p>Round 2</p>
-            <h1 className='heading'>Web Development</h1>
-            <h6 className='task'>Task round to check your skills</h6>
+            <h1 className="heading">Web Development</h1>
+            <h6 className="task">Task round to check your skills</h6>
             <h5>Instructions for Students</h5>
             <ul>
-              <li>You are required to clone the provided website present here in the figma link. <a target="_blank" href="https://www.figma.com/file/Zk8bE9zeyN9qI94IxSo1oX/MMIL-Web-Task?type=design&node-id=0%3A1&mode=design&t=U0Fr1ejGMmirLbjK-1"> here</a>. </li>
+              <li>
+                You are required to clone the provided website present here in
+                the figma link.{" "}
+                <a
+                  target="_blank"
+                  href="https://www.figma.com/file/Zk8bE9zeyN9qI94IxSo1oX/MMIL-Web-Task?type=design&node-id=0%3A1&mode=design&t=U0Fr1ejGMmirLbjK-1"
+                >
+                  {" "}
+                  here
+                </a>
+                .{" "}
+              </li>
               <li> The task deadline is 3pm IST on 14-04-2024. </li>
-              <li>The students has to complete the task before the deadline.</li>
+              <li>
+                The students has to complete the task before the deadline.
+              </li>
               <li>Task should be submitted below.</li>
             </ul>
             <h5>Details to be filled by Students.</h5>
             <form onSubmit={handleSubmit}>
               <label htmlFor="phoneNo">Phone Number*</label>
-              <div className='inputBox'>
+              <div className="inputBox">
                 <input
                   id="phoneNo"
                   className="form"
@@ -301,7 +314,7 @@ const Webdev = () => {
                 />
               </div>
               <label htmlFor="githubLink">Github link*</label>
-              <div className='inputBox'>
+              <div className="inputBox">
                 <input
                   id="githubLink"
                   className="form"
@@ -312,8 +325,10 @@ const Webdev = () => {
                   required
                 />
               </div>
-              <label htmlFor="websiteLink">Website link (Netlify/Github)*</label>
-              <div className='inputBox'>
+              <label htmlFor="websiteLink">
+                Website link (Netlify/Github)*
+              </label>
+              <div className="inputBox">
                 <input
                   id="websiteLink"
                   className="form"
@@ -323,7 +338,9 @@ const Webdev = () => {
                   onChange={(e) => setWebsiteLink(e.target.value)}
                 />
               </div>
-              <button type="submit" className="submit">Submit</button>
+              <button type="submit" className="submit">
+                Submit
+              </button>
             </form>
           </div>
         </div>

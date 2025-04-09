@@ -36,7 +36,7 @@ const Login = () => {
         const { userId, token } = response.data;
 
         if (token) {
-          localStorage.setItem("token", `Bearer ${token}`);
+          localStorage.setItem("token", token);
         }
 
         history(`/registered/${userId}`);
