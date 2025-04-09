@@ -192,7 +192,7 @@ function Register() {
 
 
         if (data.token) {
-          localStorage.setItem("token", `Bearer ${data.token}`);
+          localStorage.setItem("token", data.token);
         }
         toast.done(a)
         toast.success("Registration Successful!");
@@ -1166,7 +1166,7 @@ function Register() {
                   onMouseLeave={handleMouseLeave6}
                   onClick={handleActive6}
                 >
-                  Android-Dev
+                 Technical (Android, AI/ML & More)
                 </div>
               </div>
 
