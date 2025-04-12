@@ -288,13 +288,13 @@ const RegisteredPage = () => {
                       ></img>{" "}
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <button disabled
+                      <button 
                         className="click"
-                        style={{ cursor: "not-allowed" }}
+                        style={{ cursor: "allowed", color:'black' }}
                       >
-                        {/* <a href=""> */}
+                        <a href="https://unstop.com/o/4Uy2Z7I?utm_medium=Share&utm_source=shortUrl">
                         Click here
-                        {/* </a> */}
+                        </a>
                       </button>
                     </li>
                   </ul>
