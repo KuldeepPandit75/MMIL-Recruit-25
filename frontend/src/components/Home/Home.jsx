@@ -45,7 +45,7 @@ const Home = () => {
   }, []);
 
   const handleUnregisteredClick = () => {
-    toast.error("Please register/login first to access this feature.", {
+    toast.error("Please login first to access this feature.", {
       position: "top-right",
       autoClose: 3000,
       theme: "dark",

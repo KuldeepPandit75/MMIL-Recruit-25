@@ -271,7 +271,7 @@ const Design = () => {
                 You are required to choose ANY ONE task from{" "}
                 <a
                   target="_blank"
-                  href="https://harshjajaniya.notion.site/DESIGN-TASKS-062f1b3e3e2549c6a60bcad4db778e40?pvs=4"
+                  href="https://harshjajaniya.notion.site/DESIGN-TASKS-062f1b3e3e2549c6a60bcad4db778e40"
                 >
                   here
                 </a>

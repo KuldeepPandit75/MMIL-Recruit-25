@@ -274,7 +274,7 @@ const Programming = () => {
                 The contest will be held on Hackerrank.com.{" "}
                 <a
                   target="_blank"
-                  href="https://www.hackerrank.com/mmil-programming-club-technical-round"
+                  href="https://www.hackerrank.com/mmil-hack-o-code-2025"
                 >
                   Click here
                 </a>{" "}
@@ -283,7 +283,7 @@ const Programming = () => {
               <li>It will be of 2 hours and will contain 5 questions. </li>
               <li>
                 The contest timing will be from 7pm to 9pm <br /> IST on
-                13-04-25.
+                14-04-25.
               </li>
               <li>
                 Please sign up on Hackerank.com <br />

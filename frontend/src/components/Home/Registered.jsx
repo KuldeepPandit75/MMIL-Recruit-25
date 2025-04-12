@@ -84,7 +84,13 @@ const RegisteredPage = () => {
       const url = import.meta.env.VITE_BACKEND_URL;
       const response = await axios.post(`${url}/login`, userData);
       if (response.status === 200) {
-        const userId = response.data.userId;
+        const { userId, token } = response.data;
+        console.log(userId);
+
+        if (token) {
+          localStorage.setItem("token", token);
+        }
+
         navigate(`/technical/${userId}`);
       } else {
         console.error("Login failed:", response.statusText);
@@ -98,6 +104,14 @@ const RegisteredPage = () => {
 
   const aptitudeRoundEnded = () => {
     toast.info("The Aptitude round has been ended!", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "dark",
+    });
+  };
+
+  const willBeginSoon = () => {
+    toast.info("The technical round will begin soon", {
       position: "top-right",
       autoClose: 3000,
       theme: "dark",
@@ -355,10 +369,10 @@ const RegisteredPage = () => {
                     <li>The link to the task has been provided below.</li>
                     <li style={{ listStyle: "none" }}>
                       <button
-                        disabled
                         className="click"
-                        onClick={handleTechnicalClick}
-                        style={{ cursor: "not-allowed" }}
+                        // onClick={handleTechnicalClick}
+                        onClick={willBeginSoon}
+                        style={{ color: "black", cursor: "pointer" }}
                       >
                         {/* <Link to="/Technical"> */}
                         Click here
