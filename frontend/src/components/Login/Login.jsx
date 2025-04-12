@@ -49,6 +49,14 @@ const Login = () => {
     }
   };
 
+  const regsitrationsClosed = () => {
+      toast.error("The Registrations have been closed", {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+    };
+
   return (
     <div style={{ position: "relative", overflow: "hidden", display: "flex" }}>
       <img
@@ -195,8 +203,8 @@ const Login = () => {
             Login
           </button>
           <a
-            href="/Register"
-            // onClick={closeRegToast}
+            // href="/Register"
+            onClick={regsitrationsClosed}
             style={{
               display: "block",
               textDecoration: "underline",
