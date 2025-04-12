@@ -34,7 +34,7 @@ function App() {
         <Route path="/Webdev/:userId" element={<Webdev />} />
         <Route path="/Design/:userId" element={<Design />} />
         <Route path="/Programming/:userId" element={<Programming />} />
-        <Route path="/Android/:userId" element={<Android />} />
+        <Route path="/Technical-Domain/:userId" element={<Android />} />
         <Route path="/logout" element={<Logout />} />
       </>
     )

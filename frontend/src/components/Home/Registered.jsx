@@ -22,8 +22,6 @@ const RegisteredPage = () => {
   const [positionMainTop, setPositionMainTop] = useState("50%");
   const [showNewElement, setShowNewElement] = useState(false);
 
-  const token = localStorage.getItem("token");
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -66,7 +64,7 @@ const RegisteredPage = () => {
       try {
         const response = await axios.get(`${url}/user/${userId}`, {
           headers: {
-            Authorization: token,
+            Authorization: `Bearer ${token}`, 
           },
         });
         console.log(response.data);

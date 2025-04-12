@@ -5,8 +5,8 @@ import mmil from "/assets/mmil.png";
 import { Link } from "react-router-dom";
 import appbg from "/assets/bg-app.svg";
 import "../../Register.css";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [windowSize, setWindowSize] = useState({
@@ -44,6 +44,14 @@ const Home = () => {
     };
   }, []);
 
+  const handleUnregisteredClick = () => {
+    toast.error("Please register/login first to access this feature.", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "dark",
+    });
+  };
+
   return (
     <>
       <div>
@@ -58,10 +66,7 @@ const Home = () => {
               objectFit: "cover",
             }}
           />
-          <Link
-            className="loginBtn"
-            to="/Login"
-          >
+          <Link className="loginBtn" to="/Login">
             Login
           </Link>
           <div
@@ -123,10 +128,14 @@ const Home = () => {
                       ></img>{" "}
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <button className="click" style={{cursor: "not-allowed"}}>
+                      <button
+                        className="click"
+                        style={{ cursor: "not-allowed" }}
+                        onClick={handleUnregisteredClick}
+                      >
                         {/* <a href=""> */}
-                          Click here
-                          {/* </a> */}
+                        Click here
+                        {/* </a> */}
                       </button>
                     </li>
                   </ul>
@@ -140,61 +149,65 @@ const Home = () => {
               ></i>
             </div>
             {/* <Link to="/Technical" className="card-link"> */}
-              <div
-                className={`technical sub-card ${
-                  expandedCard === "technical" ? "expanded-technical" : ""
-                }`}
-                onClick={() => handleCardClick("technical")}
-              >
-                <div>
-                  <p className="roundNo">Round 2</p>
-                  <p className="roundName">Technical Round</p>
-                  <p className="roundDescription">
-                    Task round to check your skills.
-                  </p>
-                  <div
-                    className="technical-expanded expanded-list"
-                    style={{
-                      display: expandedCard === "technical" ? "block" : "none",
-                    }}
-                  >
-                    <ul>
-                      <li className="instructionsStudents">
-                        Instruction for Students
-                      </li>
-                      <li>
-                        {" "}
-                        Pay attention to details and follow the <br />{" "}
-                        instructions provided.
-                      </li>
-                      <li>
-                        {" "}
-                        Use this opportunity to showcase your <br /> skills and
-                        approach to problem-solving.
-                      </li>
-                      <li>
-                        {" "}
-                        The students has to complete the task <br /> before the
-                        deadline.
-                      </li>
-                      <li>The link to the task has been provided below.</li>
-                      <li style={{ listStyle: "none" }}>
-                        <button className="click" style={{cursor: "not-allowed"}}>
-                          {/* <a href="/Technical"> */}
-                            Click here
-                            {/* </a> */}
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
+            <div
+              className={`technical sub-card ${
+                expandedCard === "technical" ? "expanded-technical" : ""
+              }`}
+              onClick={() => handleCardClick("technical")}
+            >
+              <div>
+                <p className="roundNo">Round 2</p>
+                <p className="roundName">Technical Round</p>
+                <p className="roundDescription">
+                  Task round to check your skills.
+                </p>
+                <div
+                  className="technical-expanded expanded-list"
+                  style={{
+                    display: expandedCard === "technical" ? "block" : "none",
+                  }}
+                >
+                  <ul>
+                    <li className="instructionsStudents">
+                      Instruction for Students
+                    </li>
+                    <li>
+                      {" "}
+                      Pay attention to details and follow the <br />{" "}
+                      instructions provided.
+                    </li>
+                    <li>
+                      {" "}
+                      Use this opportunity to showcase your <br /> skills and
+                      approach to problem-solving.
+                    </li>
+                    <li>
+                      {" "}
+                      The students has to complete the task <br /> before the
+                      deadline.
+                    </li>
+                    <li>The link to the task has been provided below.</li>
+                    <li style={{ listStyle: "none" }}>
+                      <button
+                        className="click"
+                        style={{ cursor: "not-allowed" }}
+                        onClick={handleUnregisteredClick}
+                      >
+                        {/* <a href="/Technical"> */}
+                        Click here
+                        {/* </a> */}
+                      </button>
+                    </li>
+                  </ul>
                 </div>
-                <i
-                  className={`fa-solid fa-chevron-${
-                    expandedCard === "technical" ? "down" : "right"
-                  }`}
-                  style={{ position: "absolute", right: "60px" }}
-                ></i>
               </div>
+              <i
+                className={`fa-solid fa-chevron-${
+                  expandedCard === "technical" ? "down" : "right"
+                }`}
+                style={{ position: "absolute", right: "60px" }}
+              ></i>
+            </div>
             {/* </Link> */}
             <div
               className={`interview sub-card ${
@@ -220,10 +233,10 @@ const Home = () => {
                       Instruction for Students
                     </li>
                     <li>
-                      Your interview is scheduled for 15th of <br />{" "}
-                      April at [Time Yet to announce]. Please <br /> ensure
-                      you are available at least <br /> 10 minutes before the
-                      scheduled time.
+                      Your interview is scheduled for 15th of <br /> April at
+                      [Time Yet to announce]. Please <br /> ensure you are
+                      available at least <br /> 10 minutes before the scheduled
+                      time.
                     </li>
                     <li>
                       Interviewer will focus on different aspects of <br /> your
@@ -253,7 +266,7 @@ const Home = () => {
           {/* <Link to="" onClick={closeRegToast} className="link" style={{ top: positionTop }}>
             Register Now
           </Link> */}
-          
+
           <Link to="/Register" className="link" style={{ top: positionTop }}>
             Register Now
           </Link>
