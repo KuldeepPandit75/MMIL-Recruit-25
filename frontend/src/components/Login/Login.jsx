@@ -48,14 +48,6 @@ const Login = () => {
       toast.error("User not registered! Register using a unique email id.");
     }
   };
-
- const regsitrationsClosed = () => {
-      toast.error("The Registrations have been closed", {
-        position: "top-right",
-        autoClose: 3000,
-        theme: "dark",
-      });
-    };
   
   return (
     <div style={{ position: "relative", overflow: "hidden", display: "flex" }}>
@@ -202,21 +194,7 @@ const Login = () => {
           <button className="loginPageBtn" type="submit">
             Login
           </button>
-          <a
-            href=""
-             onClick={regsitrationsClosed}
-            style={{
-              display: "block",
-              textDecoration: "underline",
-              color: "white",
-              padding: "10px",
-              opacity: "0.5",
-              fontFamily: "Montserrat",
-              letterSpacing: "0",
-            }}
-          >
-            Register
-          </a>
+        
         </form>
         <img
           src={mmil}
