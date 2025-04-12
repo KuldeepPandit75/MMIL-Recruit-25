@@ -64,7 +64,7 @@ const RegisteredPage = () => {
       try {
         const response = await axios.get(`${url}/user/${userId}`, {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         });
         console.log(response.data);
@@ -94,6 +94,14 @@ const RegisteredPage = () => {
       toast.error("User not registered! Register using a unique email id.");
       toast.error(error);
     }
+  };
+
+  const aptitudeRoundEnded = () => {
+    toast.info("The Aptitude round has been ended!", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "dark",
+    });
   };
 
   return (
@@ -286,13 +294,14 @@ const RegisteredPage = () => {
                       ></img>{" "}
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <button 
+                      <button
                         className="click"
-                        style={{ cursor: "allowed", color:'black' }}
+                        style={{ cursor: "not-allowed" }}
+                        onClick={aptitudeRoundEnded}
                       >
-                        <a href="https://unstop.com/o/4Uy2Z7I?utm_medium=Share&utm_source=shortUrl">
+                        {/* <a href="https://unstop.com/o/4Uy2Z7I?utm_medium=Share&utm_source=shortUrl"> */}
                         Click here
-                        </a>
+                        {/* </a> */}
                       </button>
                     </li>
                   </ul>
@@ -345,8 +354,11 @@ const RegisteredPage = () => {
                     </li>
                     <li>The link to the task has been provided below.</li>
                     <li style={{ listStyle: "none" }}>
-                      <button disabled className="click" onClick={handleTechnicalClick}
-                        style={{cursor:'not-allowed'}}
+                      <button
+                        disabled
+                        className="click"
+                        onClick={handleTechnicalClick}
+                        style={{ cursor: "not-allowed" }}
                       >
                         {/* <Link to="/Technical"> */}
                         Click here

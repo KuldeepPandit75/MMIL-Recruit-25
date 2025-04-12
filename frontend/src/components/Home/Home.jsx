@@ -33,9 +33,9 @@ const Home = () => {
     });
   };
 
-  // const closeRegToast = () => {
-  //   toast.info("Registerations are closed now!");
-  // }
+  const closeRegToast = () => {
+    toast.info("Registerations are closed now!");
+  }
 
   useEffect(() => {
     window.addEventListener("resize", updateWindowSize);
@@ -263,13 +263,13 @@ const Home = () => {
           </div>
           <img src={mmil} alt="Overlay Image" className="mmil-logo" />
 
-          {/* <Link to="" onClick={closeRegToast} className="link" style={{ top: positionTop }}>
-            Register Now
-          </Link> */}
-
-          <Link to="/Register" className="link" style={{ top: positionTop }}>
+          <Link to="" onClick={closeRegToast} className="link" style={{ top: positionTop }}>
             Register Now
           </Link>
+{/* 
+          <Link to="/Register" className="link" style={{ top: positionTop }}>
+            Register Now
+          </Link> */}
         </div>
       </div>
     </>
