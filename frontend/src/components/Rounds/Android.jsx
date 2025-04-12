@@ -279,23 +279,35 @@ const Android = () => {
               <h6 className="task">Task round to check your skills</h6>
               <h5>Instructions for Students</h5>
               <ul>
-                <li>You are required to make a Unit Converter app. </li>
                 <li>
-                  Task details can be found{" "}
+                  <strong>Android:</strong> Build the following app. Task
+                  details{" "}
                   <Link
-                    to="https://awake-marjoram-4b7.notion.site/Android-TASK-6838e82822cf482f958e4104e16f3110?pvs=4"
+                    to="https://drive.google.com/file/d/1vDr93oskJJxb9A0M-JH4JIpiD6pA2Wx_/view"
                     target="_blank"
                   >
                     here
                   </Link>
                   .
                 </li>
-                <li>The task deadline is 3pm IST on 14-04-2025. </li>
-                <li>Task should be submitted below.</li>
                 <li>
-                  Apk should be uploaded on Google drive and attached below.
+                  <strong>AI/ML:</strong> Task document available{" "}
+                  <Link
+                    to="https://drive.google.com/file/d/17kZqS0bM91ig1Mv1nEBa2IvngtNVKpAj/view"
+                    target="_blank"
+                  >
+                    here
+                  </Link>
+                  .
+                </li>
+                <li>Deadline: 3 PM IST, 14-04-2025.</li>
+                <li>
+                  <strong>Submission:</strong> <br />
+                  Android – upload APK to Google Drive. <br />
+                  AI/ML – submit <code>.ipynb</code> or Colab link.
                 </li>
               </ul>
+
               <h5>Details to be filled by Students.</h5>
               <form onSubmit={handleSubmit}>
                 <label htmlFor="phoneNumber">Phone Number*</label>
@@ -322,13 +334,15 @@ const Android = () => {
                     required
                   />
                 </div>
-                <label htmlFor="gDriveLink">Google-drive Link</label>
+                <label htmlFor="gDriveLink">
+                  Submission Link*
+                </label>
                 <div className="inputBox">
                   <input
                     id="gDriveLink"
                     className="form"
                     type="text"
-                    placeholder="Paste your Google Drive link"
+                    placeholder="Drive link (APK) or Colab/.ipynb link"
                     value={gDriveLink}
                     onChange={(e) => setGDriveLink(e.target.value)}
                   />

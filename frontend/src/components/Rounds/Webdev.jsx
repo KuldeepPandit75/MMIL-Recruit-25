@@ -286,7 +286,7 @@ const Webdev = () => {
                 the figma link.{" "}
                 <a
                   target="_blank"
-                  href="https://www.figma.com/file/Zk8bE9zeyN9qI94IxSo1oX/MMIL-Web-Task?type=design&node-id=0%3A1&mode=design&t=U0Fr1ejGMmirLbjK-1"
+                  href="https://www.figma.com/design/ghIlz4sHkJNGHBsmBvT9br/MMIL-WEBD-Task-2k25?node-id=0-1&p=f"
                 >
                   {" "}
                   here
