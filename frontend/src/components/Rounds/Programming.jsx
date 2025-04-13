@@ -280,6 +280,16 @@ const Programming = () => {
                 </a>{" "}
                 to go to the contest.
               </li>
+              <li>
+                ⚠️ Before starting with the contest fill out the given{" "}
+                {""}
+                <a
+                  target="_blank"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdaNozDMt35szumrywd0UMl-7HfRQfWvT-qcNJ52bpzb8ETwg/viewform?usp=dialog"
+                >
+                 'Form'
+                </a>.
+              </li>
               <li>It will be of 2 hours and will contain 5 questions. </li>
               <li>
                 The contest timing will be from 7pm to 9pm <br /> IST on

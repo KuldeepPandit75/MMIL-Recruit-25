@@ -370,8 +370,8 @@ const RegisteredPage = () => {
                     <li style={{ listStyle: "none" }}>
                       <button
                         className="click"
-                        // onClick={handleTechnicalClick}
-                        onClick={willBeginSoon}
+                        onClick={handleTechnicalClick}
+                        // onClick={willBeginSoon}
                         style={{ color: "black", cursor: "pointer" }}
                       >
                         {/* <Link to="/Technical"> */}
