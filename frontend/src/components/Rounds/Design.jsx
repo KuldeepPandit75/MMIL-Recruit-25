@@ -277,7 +277,7 @@ const Design = () => {
                 </a>
                 .
               </li>
-              <li> The task deadline is 3pm IST on 14-04-2025. </li>
+              <li> The task deadline is 12:00 AM IST on 15-04-2025. </li>
               <li>
                 The students has to complete the task in before the deadline.
               </li>
