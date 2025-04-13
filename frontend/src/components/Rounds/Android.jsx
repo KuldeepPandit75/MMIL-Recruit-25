@@ -300,7 +300,7 @@ const Android = () => {
                   </Link>
                   .
                 </li>
-                <li>Deadline: 3 PM IST, 14-04-2025.</li>
+                <li>Deadline: 12:00 AM IST, 15-04-2025.</li>
                 <li>
                   <strong>Submission:</strong> <br />
                   Android – upload APK to Google Drive. <br />
