@@ -50,12 +50,12 @@ const Login = () => {
   };
 
   const regsitrationsClosed = () => {
-      toast.error("The Registrations have been closed", {
-        position: "top-right",
-        autoClose: 3000,
-        theme: "dark",
-      });
-    };
+    toast.error("The Registrations have been closed", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "dark",
+    });
+  };
 
   return (
     <div style={{ position: "relative", overflow: "hidden", display: "flex" }}>
@@ -63,8 +63,8 @@ const Login = () => {
         src={windowSize.width <= 900 ? appbg : bg}
         alt="Your Image"
         style={{
-          width: windowSize.width < 900 ? "100vw" : "100vw",
-          height: windowSize.width < 900 ? "100vh" : "100vh",
+          width: "100vw",
+          height: "100vh",
           objectFit: "cover",
         }}
       />
@@ -83,13 +83,9 @@ const Login = () => {
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
           width: "23rem",
           height: "19rem",
-          // display:'flex',
-          // flexDirection:'column',
-          // alignItems:'center',
           textAlign: "center",
         }}
       >
-        {/* Your card content goes here */}
         <p
           style={{
             fontSize: "40px",
@@ -146,7 +142,7 @@ const Login = () => {
               }}
               type="tel"
               name="phoneNo"
-              placeholder="Enter your phoneNo number"
+              placeholder="Enter your phone number"
               value={userData.phoneNo}
               onChange={handleChange}
             />
@@ -202,8 +198,8 @@ const Login = () => {
           <button className="loginPageBtn" type="submit">
             Login
           </button>
+
           <a
-            // href="/Register"
             onClick={regsitrationsClosed}
             style={{
               display: "block",
@@ -213,11 +209,13 @@ const Login = () => {
               opacity: "0.5",
               fontFamily: "Montserrat",
               letterSpacing: "0",
+              cursor: "pointer",
             }}
           >
             Register
           </a>
         </form>
+
         <img
           src={mmil}
           alt="Overlay Image"
