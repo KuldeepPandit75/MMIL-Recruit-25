@@ -49,7 +49,6 @@ const Login = () => {
     }
   };
   
-
   return (
     <div style={{ position: "relative", overflow: "hidden", display: "flex" }}>
       <img
@@ -195,21 +194,7 @@ const Login = () => {
           <button className="loginPageBtn" type="submit">
             Login
           </button>
-          <a
-            href="/Register"
-            // onClick={closeRegToast}
-            style={{
-              display: "block",
-              textDecoration: "underline",
-              color: "white",
-              padding: "10px",
-              opacity: "0.5",
-              fontFamily: "Montserrat",
-              letterSpacing: "0",
-            }}
-          >
-            Register
-          </a>
+        
         </form>
         <img
           src={mmil}
