@@ -110,8 +110,8 @@ const RegisteredPage = () => {
     });
   };
 
-  const willBeginSoon = () => {
-    toast.info("The technical round will begin soon", {
+  const roundEnded = () => {
+    toast.info("The technical round is now closed for submissions.", {
       position: "top-right",
       autoClose: 3000,
       theme: "dark",
@@ -310,7 +310,7 @@ const RegisteredPage = () => {
                     <li style={{ listStyle: "none" }}>
                       <button
                         className="click"
-                        style={{ cursor: "not-allowed" }}
+                        style={{ color: "gray", cursor: "not-allowed" }}
                         onClick={aptitudeRoundEnded}
                       >
                         {/* <a href="https://unstop.com/o/4Uy2Z7I?utm_medium=Share&utm_source=shortUrl"> */}
@@ -370,9 +370,9 @@ const RegisteredPage = () => {
                     <li style={{ listStyle: "none" }}>
                       <button
                         className="click"
-                        onClick={handleTechnicalClick}
-                        // onClick={willBeginSoon}
-                        style={{ color: "black", cursor: "pointer" }}
+                        // onClick={handleTechnicalClick}
+                        onClick={roundEnded}
+                        style={{ color: "gray", cursor: "not-allowed" }}
                       >
                         {/* <Link to="/Technical"> */}
                         Click here
